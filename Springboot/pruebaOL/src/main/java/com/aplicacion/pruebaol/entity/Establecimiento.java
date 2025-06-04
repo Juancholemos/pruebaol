@@ -1,5 +1,7 @@
-package com.aplicacion.pruebaol.auth.entity;
+package com.aplicacion.pruebaol.entity;
 
+import com.aplicacion.pruebaol.entity.Comerciante;
+import com.aplicacion.pruebaol.entity.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 
