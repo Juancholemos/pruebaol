@@ -5,11 +5,17 @@ import com.aplicacion.pruebaol.entity.Comerciante;
 import com.aplicacion.pruebaol.entity.Usuario;
 import com.aplicacion.pruebaol.repository.ComercianteRepository;
 import com.aplicacion.pruebaol.repository.UsuarioRepository;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ComercianteService {
@@ -18,18 +24,6 @@ public class ComercianteService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    public Page<Comerciante> listarComerciantes(String razonSocial, LocalDate fechaRegistro, String estado, Pageable pageable) {
-        return comercianteRepository.findByRazonSocialContainingIgnoreCaseAndEstadoContainingIgnoreCase(
-                razonSocial, fechaRegistro, estado, pageable);
-    }
-
-    /*public Page<Comerciante> listarComerciantes(String nombre, LocalDate fechaInicio, LocalDate fechaFin,
-                                                String estado, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return comercianteRepository.findByNombreRazonSocialContainingIgnoreCaseAndFechaRegistroBetweenAndEstado(
-                nombre, fechaInicio, fechaFin, estado, pageable);
-    }*/
 
     public Comerciante obtenerPorId(Long id) {
         return comercianteRepository.findById(id).orElseThrow(() -> new RuntimeException("Comerciante no encontrado con ID: " + id));
@@ -85,5 +79,38 @@ public class ComercianteService {
                 .orElseThrow(() -> new RuntimeException("Usuario autenticado no encontrado para auditoría con email: " + emailUsuario));
         comerciante.setUsuario(usuarioAuditoria);
         return comercianteRepository.save(comerciante);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Comerciante> listarComerciantes(String razonSocial, LocalDate fechaRegistro, String estado, Pageable pageable) {
+
+        Specification<Comerciante> spec = (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (razonSocial != null && !razonSocial.trim().isEmpty()) {
+                predicates.add(criteriaBuilder.like(
+                        criteriaBuilder.lower(root.get("razonSocial")),
+                        "%" + razonSocial.toLowerCase().trim() + "%"
+                ));
+            }
+
+            if (fechaRegistro != null) {
+                predicates.add(criteriaBuilder.equal(root.get("fechaRegistro"), fechaRegistro));
+            }
+
+            if (estado != null && !estado.trim().isEmpty()) {
+                try {
+                    Comerciante.Estado estadoEnum = Comerciante.Estado.valueOf(estado.trim());
+                    predicates.add(criteriaBuilder.equal(root.get("estado"), estadoEnum));
+                } catch (IllegalArgumentException e) {
+                    throw new RuntimeException("El valor de estado '" + estado + "' no es válido. Los valores permitidos son: " +
+                            java.util.Arrays.toString(Comerciante.Estado.values()));
+                }
+            }
+
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+
+        return comercianteRepository.findAll(spec, pageable);
     }
 }

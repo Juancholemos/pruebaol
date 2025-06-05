@@ -1,0 +1,422 @@
+{
+	"info": {
+		"_postman_id": "67845c32-d074-4379-bc60-58e11c1ad078",
+		"name": "pruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8215218"
+	},
+	"item": [
+		{
+			"name": "reto05-userAdmin",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"juan@email.com\",\r\n    \"password\": \"clave123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto05-userAuxiliar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"juan@email.com\",\r\n    \"password\": \"clave123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto06",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuQGVtYWlsLmNvbSIsInJvbCI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3NDkwNjMwMDYsImV4cCI6MTc0OTA2NjYwNn0.lapiputDAV9wmXbXA2XqTXhNC_nUfqfwTrdM_RRyxj_s6vP43xqPOA7_QpfMgtrZjPU99EGWqkr4IFs7Mq6z4A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/municipios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"municipios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto07-crear",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb3NlQGVtYWlsLmNvbSIsInJvbCI6IkF1eGlsaWFyIiwiaWF0IjoxNzQ5MDg0NTg2LCJleHAiOjE3NDkwODgxODZ9.G1EHm3d3-7PqgxWrx4uIprWftdBqDcB8iDycj-R1DQNWkOFwA8Jwc4xg4NaCQIXeuielaC3LX7w-2uguMUArww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"razonSocial\": \"Santiago Antana\",\r\n    \"municipio\": \"Popayan\",\r\n    \"telefono\": \"777888999\",\r\n    \"email\": \"santiago_antana@mail.com\",\r\n    \"fechaRegistro\": \"2025-05-30\",\r\n    \"estado\": \"Activo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comerciantes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comerciantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto07-actualizar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"razonSocial\": \"Roberto Klaus\",\r\n    \"municipio\": \"Cali\",\r\n    \"telefono\": \"111000111\",\r\n    \"email\": \"roberto_klaus_upd@mail.com\",\r\n    \"fechaRegistro\": \"01/06/2025\",\r\n    \"estado\": \"Activo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comerciantes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comerciantes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto07-eliminar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuQGVtYWlsLmNvbSIsInJvbCI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3NDkwNjg1NDEsImV4cCI6MTc0OTA3MjE0MX0.Ymid8PloQ9ptToci7Ylf0hmsXTl7TiRxmjO7FrKUji5NsF1HqG7PHlaUwSgcwoPIRJ2yAl4cOAWGzXMWhZK1zw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "id",
+						"value": "5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comerciantes/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comerciantes",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto07-consultarId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuQGVtYWlsLmNvbSIsInJvbCI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3NDkwNzYwNDQsImV4cCI6MTc0OTA3OTY0NH0.v-ETLbOz7LFRoJH6hFazogchXpQX14ytWuE3h3dBsWVjf3oTagIKYsQgJo9U9bRXhjzQA3h0JVMAfcHYmdalLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comerciantes/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comerciantes",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto07-consultarPag",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuQGVtYWlsLmNvbSIsInJvbCI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3NDkwNzYwNDQsImV4cCI6MTc0OTA3OTY0NH0.v-ETLbOz7LFRoJH6hFazogchXpQX14ytWuE3h3dBsWVjf3oTagIKYsQgJo9U9bRXhjzQA3h0JVMAfcHYmdalLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comerciantes?razonSocial=clara%20vergara&estado=Activo&page=0&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comerciantes"
+					],
+					"query": [
+						{
+							"key": "razonSocial",
+							"value": "clara%20vergara"
+						},
+						{
+							"key": "estado",
+							"value": "Activo"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto07-actualizarEstado",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"juan@email.com\",\r\n    \"password\": \"clave123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/comerciantes/5/estado?estado=Inactivo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"comerciantes",
+						"5",
+						"estado"
+					],
+					"query": [
+						{
+							"key": "estado",
+							"value": "Inactivo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reto08",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuQGVtYWlsLmNvbSIsInJvbCI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3NDkwODA4NDMsImV4cCI6MTc0OTA4NDQ0M30.6tsZ74VsZw8eHRi49ox9XO3Yzj5DKxNU4TkD6ONSMCdNviipIzy2-nitmR0D6UwOWd1yjbG_bhNQATlalcpFlg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/reportes/comerciantes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"reportes",
+						"comerciantes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
